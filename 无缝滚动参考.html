@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>无缝滚动</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		div,ul,li {
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		#box {
+			width: 500px;
+			height: 30px;
+			line-height: 30px;
+			margin: 100px auto;
+			border: 15px solid #666;
+			overflow: hidden;
+		}
+	</style>
+</head>
+
+<body>
+	
+	<div id="box">
+		<ul>
+			<li><a href="" title="">1 浏览器中任何分辨率的显示屏浏览器中处于水平居中和上下垂直居中</a></li>
+			<li><a href="" title="">2 sdfasdf</a></li>
+			<li><a href="" title="">3 浏览器中任何分辨率的显示屏浏览器中处于水平居中和上下垂直居中</a></li>
+			<li><a href="" title="">4 浏览器中任何分辨率的显示屏浏览器中处于水平居中和上下垂直居中</a></li>
+			<li><a href="" title="">5 浏览器中任何分辨率的显示屏浏览器中处于水平居中和上下垂直居中</a></li>
+			<li><a href="" title="">6 浏览器中任何分辨率的显示屏浏览器中处于水平居中和上下垂直居中</a></li>
+		</ul>
+	</div>
+
+<script type="text/javascript">
+
+	var box = document.getElementById("box"),
+		boxU = box.getElementsByTagName("ul")[0],
+		timer = setInterval(scrollUp, 50);
+
+	box.onmouseover = function () {
+		clearInterval(timer);
+	}
+
+	box.onmouseout = function(){
+		timer = setInterval(scrollUp, 50);
+	}
+
+	function scrollUp () {
+		box.scrollTop++;
+		if(box.scrollTop == 30){
+			box.scrollTop = 0;	// 当上移距离等于30时，立马重置box位置
+			boxU.appendChild(boxU.firstElementChild);
+		}
+	}	
+</script>	
+</body>
+</html>
