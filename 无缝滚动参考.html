@@ -38,24 +38,46 @@
 <script type="text/javascript">
 
 	var box = document.getElementById("box"),
-		boxU = box.getElementsByTagName("ul")[0],
-		timer = setInterval(scrollUp, 50);
+		boxU = box.getElementsByTagName("ul")[0];
+	// 	timer = setInterval(scrollUp, 50);
 
-	box.onmouseover = function () {
-		clearInterval(timer);
+	// box.onmouseover = function () {
+	// 	clearInterval(timer);
+	// }
+
+	// box.onmouseout = function(){
+	// 	timer = setInterval(scrollUp, 50);
+	// }
+
+	// function scrollUp () {
+	// 	box.scrollTop++;
+	// 	if(box.scrollTop == 30){
+	// 		box.scrollTop = 0;	// 当上移距离等于30时，立马重置box位置
+	// 		boxU.appendChild(boxU.firstElementChild);
+	// 	}
+	// }
+
+
+	// 停留 3 秒继续滚动
+
+	var timer;
+	function start () {
+		// box.scrollTop++;
+		timer = setInterval(move, 50);
 	}
-
-	box.onmouseout = function(){
-		timer = setInterval(scrollUp, 50);
-	}
-
-	function scrollUp () {
+	function move () {
 		box.scrollTop++;
-		if(box.scrollTop == 30){
-			box.scrollTop = 0;	// 当上移距离等于30时，立马重置box位置
+		if(box.scrollTop == 30) {
+			clearInterval(timer);
+			box.scrollTop = 0;
 			boxU.appendChild(boxU.firstElementChild);
+			setTimeout(start,3000);
 		}
-	}	
+	}
+
+setTimeout(start, 3000);
+	
+
 </script>	
 </body>
 </html>
