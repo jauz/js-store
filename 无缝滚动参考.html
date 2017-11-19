@@ -76,7 +76,50 @@
 	}
 
 setTimeout(start, 3000);
-	
+
+
+
+carousel("carousellist", 3000);
+
+function carousel (id, delay) {
+	var ele = document.getElementById(id),
+		speed = 30,
+		timer2 = null;
+	if(ele.childElementCount > 1) {
+		var move = function () {
+			clearInterval(timer);
+			var timer = setInterval(function () {					
+				ele.scrollTop++;
+				if(ele.scrollTop >= ele.offsetHeight) {
+					clearInterval(timer);
+					ele.scrollTop = 0;
+					ele.appendChild(ele.firstElementChild);
+					timer2 = setTimeout(move, delay);
+				}
+			}, speed)
+		}
+
+		setTimeout(move, delay);
+
+		ele.onmouseover = function (e) {
+			if (!e) e = window.event;  
+		    var reltg = e.relatedTarget ? e.relatedTarget : e.toElement;  
+		    while(reltg && reltg != this) reltg = reltg.parentNode;  
+		    if( reltg != this ){  
+		       clearTimeout(timer2);
+		   } 
+		}
+
+		ele.onmouseout = function (e) {
+			if (!e) e = window.event;  
+		    var reltg = e.relatedTarget ? e.relatedTarget : e.toElement;  
+		    while(reltg && reltg != this) reltg = reltg.parentNode;  
+		    if(reltg != this){  
+		        setTimeout(move, delay);
+		   } 			
+		}
+	}	
+}	
 
 </script>	
 </body>
